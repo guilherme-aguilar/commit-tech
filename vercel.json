@@ -12,12 +12,19 @@
   ],
   "routes": [
     {
-      "src": "/?(.*)",
-      "dest": "/apps/frontend/$1"
-    },
-    {
       "src": "/api/?(.*)",
       "dest": "/apps/backend/src/main.ts"
+    },
+    {
+      "src": "/?(.*)",
+      "dest": "/apps/frontend/$1"
     }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "master": true,
+      "homol": true,
+      "*": false
+    }
+  }
 }
