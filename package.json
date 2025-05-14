@@ -2,5 +2,8 @@
   "name": "commit-tech",
   "version": "1.0.0",
   "author": "https://github.com/guilherme-aguilar",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
 }
