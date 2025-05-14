@@ -26,5 +26,6 @@
       "homol": true,
       "*": false
     }
-  }
+  },
+  "ignoreCommand": "bash .scripts/build-vercel.sh"
 }
