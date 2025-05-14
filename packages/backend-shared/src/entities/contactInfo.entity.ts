@@ -1,4 +1,4 @@
-import { EBasic, type MBasic } from "../basic.entity";
+import { EBasic, MBasic } from "./00_basic.entity";
 
 export interface MContactInfo extends MBasic {
   phone: string[];

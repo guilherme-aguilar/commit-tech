@@ -1,4 +1,4 @@
-import { EBasic, MBasic } from "../basic.entity";
+import { EBasic, MBasic } from "./00_basic.entity";
 
 export interface MAddress extends MBasic {
   street: string;

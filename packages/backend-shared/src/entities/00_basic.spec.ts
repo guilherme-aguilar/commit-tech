@@ -1,4 +1,4 @@
-import { EAddress } from "./entities/address.entity";
+import { EAddress } from "./address.entity";
 
 // Dados iniciais para AddressEntity
 const defaultProps = {
