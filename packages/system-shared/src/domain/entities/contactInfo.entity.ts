@@ -1,6 +1,6 @@
-import { EBasic, MBasic } from "./00_basic.entity";
+import { BasicEntity, type BasicModel } from "./00_basic.entity";
 
-export interface MContactInfo extends MBasic {
+export interface ContactInfoModel extends BasicModel {
   phone: string[];
   email: string[];
   whatsapp?: string;
@@ -10,8 +10,8 @@ export interface MContactInfo extends MBasic {
   }[];
 }
 
-export class EContactInfo extends EBasic<MContactInfo> {
-  constructor(props: MContactInfo, id?: string) {
+export class ContactInfoEntity extends BasicEntity<ContactInfoModel> {
+  constructor(props: ContactInfoModel, id?: string) {
     super(props, id);
   }
   

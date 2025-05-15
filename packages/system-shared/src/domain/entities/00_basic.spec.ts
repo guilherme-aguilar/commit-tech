@@ -1,4 +1,4 @@
-import { EAddress } from "./address.entity";
+import { AddressEntity } from "./address.entity";
 
 // Dados iniciais para AddressEntity
 const defaultProps = {
@@ -10,16 +10,16 @@ const defaultProps = {
   number: '123',
 };
 
-describe('EAddress', () => {
-  let entity : EAddress;
+describe('AddressEntity', () => {
+  let entity : AddressEntity;
 
   beforeEach(() => {
-    entity = new EAddress(defaultProps);
+    entity = new AddressEntity(defaultProps);
   });
 
   it('deve inicializar id e timestamps corretamente', () => {
     // Arrange
-    const entity = new EAddress(defaultProps);
+    const entity = new AddressEntity(defaultProps);
 
     // Act
     const json = entity.toJSON();
@@ -33,7 +33,7 @@ describe('EAddress', () => {
 
   it('deve ser possivel desativar um registro corretamente', () => {
     // Arrange
-    const entity = new EAddress(defaultProps);
+    const entity = new AddressEntity(defaultProps);
 
     // Act
     entity.disable();
@@ -45,7 +45,7 @@ describe('EAddress', () => {
 
   it('deve ser possivel atualizar um registro corretamente', () => {
     // Arrange
-    const entity = new EAddress(defaultProps);
+    const entity = new AddressEntity(defaultProps);
     const newProps = {
       city: 'newCity',
       state: 'newState',
@@ -69,7 +69,7 @@ describe('EAddress', () => {
 
   it('deve ser possivel ativar um registro corretamente', () => {
     // Arrange
-    const entity = new EAddress(defaultProps);
+    const entity = new AddressEntity(defaultProps);
 
     // Act
     entity.disable();

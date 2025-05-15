@@ -7,12 +7,12 @@ import type { Replace } from "../../helpers/replace";
 import type { PropUpdater } from "../adapters/PropUpdater";
 
 
-export interface MBasic {
+export interface BasicModel {
   createdAt?: Date;
   updatedAt?: Date | null; 
   disabledAt?: Date | null;
 }
-export class EBasic<T extends MBasic> {
+export class BasicEntity<T extends BasicModel> {
   protected readonly _id: string;
   protected props: T;
   private updaters: PropUpdater[];
@@ -41,7 +41,7 @@ export class EBasic<T extends MBasic> {
     } as T;
   }
 
-  public updateProperties(patch: Partial<Omit<T, keyof MBasic>>): this {
+  public updateProperties(patch: Partial<Omit<T, keyof BasicModel>>): this {
     Object.entries(patch).forEach(([key, value]) => {
       if (value === undefined || value === null) return;
       for (const up of this.updaters) {

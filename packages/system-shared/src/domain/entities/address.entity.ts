@@ -1,6 +1,6 @@
-import { EBasic, MBasic } from "./00_basic.entity";
+import { BasicEntity, type BasicModel,  } from "./00_basic.entity";
 
-export interface MAddress extends MBasic {
+export interface AddressModel extends BasicModel {
   street: string;
   number: string;
   complement?: string;
@@ -10,9 +10,9 @@ export interface MAddress extends MBasic {
   zipCode: string;
 }
 
-export class EAddress extends EBasic<MAddress> {
+export class AddressEntity extends BasicEntity<AddressModel> {
   constructor(
-    props: MAddress, 
+    props: AddressModel, 
     id?: string) {
     super(props, id);
   }
