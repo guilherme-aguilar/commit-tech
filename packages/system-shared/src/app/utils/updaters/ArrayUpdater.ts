@@ -1,4 +1,4 @@
-import type { PropUpdater } from "../../interfaces/PropUpdater";
+import type { PropUpdater } from "../../../domain/adapters/PropUpdater";
 
 export class ArrayUpdater implements PropUpdater {
   canHandle(v: unknown): boolean {
