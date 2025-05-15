@@ -1,7 +1,7 @@
-import type { IWhereFilter } from "./app/filters/general"
+import type { IWhereFilter } from "../../app/filters/general"
 
 
-export abstract class RBasic<T> {
+export abstract class BasicRepository<T> {
 
   abstract insert(data: T): Promise<void>
 
