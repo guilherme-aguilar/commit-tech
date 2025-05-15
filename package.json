@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "author": "https://github.com/guilherme-aguilar",
   "license": "ISC",
+  "scripts": {
+    "backend:dev": "pnpm --filter backend start:dev"
+  },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@nestjs/core",
