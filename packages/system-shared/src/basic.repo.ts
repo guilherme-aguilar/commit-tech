@@ -1,4 +1,4 @@
-import type { IWhereFilter } from "./filters/general"
+import type { IWhereFilter } from "./app/filters/general"
 
 
 export abstract class RBasic<T> {
