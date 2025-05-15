@@ -1,10 +1,11 @@
-import type { Replace } from "../helpers/replace";
-import type { PropUpdater } from "../interfaces/PropUpdater";
-import { generateId } from "../utils/generateId";
-import { ArrayUpdater } from "../utils/updaters/ArrayUpdater";
-import { DateUpdater } from "../utils/updaters/DateUpdater";
-import { DefaultUpdater } from "../utils/updaters/DefaultUpdater";
-import { ObjectUpdater } from "../utils/updaters/ObjectUpdater";
+import { generateId } from "../../app/utils/generateId";
+import { ArrayUpdater } from "../../app/utils/updaters/ArrayUpdater";
+import { DateUpdater } from "../../app/utils/updaters/DateUpdater";
+import { DefaultUpdater } from "../../app/utils/updaters/DefaultUpdater";
+import { ObjectUpdater } from "../../app/utils/updaters/ObjectUpdater";
+import type { Replace } from "../../helpers/replace";
+import type { PropUpdater } from "../adapters/PropUpdater";
+
 
 export interface MBasic {
   createdAt?: Date;
