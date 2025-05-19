@@ -5,6 +5,8 @@ export interface UserModel extends BasicModel {
   lastName: string;
   contactInfo: ContactInfoModel;
   address: AddressModel;
+  password?: string | null;
+  refreshToken?: string | null;
 }
 
 type model = UserModel;
@@ -15,4 +17,21 @@ export class UserEntity extends BasicEntity<model> {
     id?: string) {
     super(props, id);
   }
+
+  getEmail(): string[] {
+    return this.props.contactInfo.email;
+  }
+
+  getPassword(): string | null {
+    return this.props.password ?? null;
+  }
+
+  getRefreshToken(): string | null {
+    return this.props.refreshToken ?? null;
+  }
+
+  hasPassword(): boolean {
+    return !!this.props.password;
+  }
+
 }

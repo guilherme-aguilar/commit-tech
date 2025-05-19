@@ -1,7 +1,7 @@
-import type { UserEntity } from "../entities/user.entity";
 import { BasicRepository } from "@commit-tech/system-shared";
+import type { UserEntity, UserModel } from "../entities/user.entity";
 
 
-export interface UserRepository extends BasicRepository<UserEntity> {
-  findByEmail(email: string): Promise<UserEntity>;
+export abstract class UserRepository extends BasicRepository<UserModel, UserEntity> {
+ 
 }

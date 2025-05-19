@@ -7,5 +7,5 @@ export interface JwtAdapter {
     secret: string,
     expiresIn: string
   ): string;
-  verify(token: string): string | object;
+  verify(token: string, secret: string): any;
 }
