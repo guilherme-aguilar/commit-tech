@@ -8,6 +8,7 @@ import type { PropUpdater } from "../adapters/PropUpdater";
 
 
 export interface BasicModel {
+  id?: string;
   createdAt?: Date;
   updatedAt?: Date | null; 
   disabledAt?: Date | null;
@@ -33,12 +34,21 @@ export class BasicEntity<T extends BasicModel> {
   }
 
   private initializeProps(props: Replace<T, { createdAt?: Date }>): T {
+    const normalized = this.normalizeNullables(props);
     return {
-      ...props,
-      createdAt: props.createdAt ?? new Date(),
-      disabledAt: props.disabledAt ?? null,
-      updatedAt: props.updatedAt ?? null,
+      ...normalized,
+      createdAt: normalized.createdAt ?? new Date(),
+      disabledAt: normalized.disabledAt ?? null,
+      updatedAt: normalized.updatedAt ?? null,
     } as T;
+  }
+  
+  private normalizeNullables(obj: Record<string, any>): Record<string, any> {
+    const result: Record<string, any> = {};
+    for (const key in obj) {
+      result[key] = obj[key] === undefined ? null : obj[key];
+    }
+    return result;
   }
 
   public updateProperties(patch: Partial<Omit<T, keyof BasicModel>>): this {
@@ -65,5 +75,9 @@ export class BasicEntity<T extends BasicModel> {
 
   public disable() {
     this.props.disabledAt = new Date();
+  }
+
+  get id() {
+    return this._id;
   }
 }

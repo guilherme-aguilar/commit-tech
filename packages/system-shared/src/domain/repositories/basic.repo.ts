@@ -1,27 +1,27 @@
 import type { IWhereFilter } from "../../app/filters/general"
 
 
-export abstract class BasicRepository<T> {
+export abstract class BasicRepository<TModel, TEntity> {
 
-  abstract insert(data: T): Promise<void>
+  abstract insert(data: TEntity): Promise<void>
 
-  abstract update(data: T): Promise<void>
+  abstract update(data: TEntity): Promise<void>
 
   abstract searchOne(
-    where: IWhereFilter<T>,
+    where: IWhereFilter<TModel>,
     includes?: any
-  ): Promise<T>
+  ): Promise<TEntity>
 
   abstract searchMany(
     filter?: {
-      where?: IWhereFilter<T>
+      where?: IWhereFilter<TModel>
     },
     includes?: any
-  ): Promise<T[]>
+  ): Promise<TEntity[]>
 
   abstract count(
     filter?: {
-      where?: IWhereFilter<T>
+      where?: IWhereFilter<TModel>
     }
   ): Promise<number>
 

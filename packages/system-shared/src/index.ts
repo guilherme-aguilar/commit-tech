@@ -18,3 +18,5 @@ export * from "./domain/entities/address.entity";
 export * from "./domain/entities/contactInfo.entity";
 export * from "./helpers/deepPartial";
 export * from "./helpers/replace";
+
+export * from "./app/basic.usecase";
