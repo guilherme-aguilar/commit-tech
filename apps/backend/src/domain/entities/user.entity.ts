@@ -1,4 +1,5 @@
 import { BasicModel, ContactInfoModel, AddressModel, BasicEntity} from "@commit-tech/system-shared";
+import type { WhatsappModel } from "./whatsapp.entity";
 
 export interface UserModel extends BasicModel {
   firstName: string;
@@ -8,6 +9,10 @@ export interface UserModel extends BasicModel {
   address?: AddressModel;
   password?: string | null;
   refreshToken?: string | null;
+
+  whatsappInstances?: string[];
+  whatsapp?: WhatsappModel
+
 }
 
 type model = UserModel;

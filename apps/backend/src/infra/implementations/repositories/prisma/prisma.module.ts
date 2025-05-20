@@ -1,9 +1,11 @@
 import { Module } from "@nestjs/common";
 import { PrismaUserRepository } from "./userRepository";
 import { PrismaModule } from "src/infra/services/database/prisma/prisma.module";
+import { PrismaWhatsappRepository } from "./whatsappRepository";
 
 const repositories = [
-  PrismaUserRepository
+  PrismaUserRepository,
+  PrismaWhatsappRepository
 ]
 
 @Module({

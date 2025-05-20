@@ -9,14 +9,15 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(uuid())
+  id           String     @id @default(uuid())
   firstName    String
   lastName     String
   password     String?
   refreshToken String?
-  email        String   @unique
+  email        String     @unique
   phones       Phone[]
   address      Address?
+  Whatsapp     Whatsapp[]
 }
 
 model Phone {
@@ -39,4 +40,13 @@ model Address {
   zipCode      String
   userId       String? @unique // One-to-one relation with User
   user         User?   @relation(fields: [userId], references: [id])
+}
+
+model Whatsapp {
+  id               String @id @default(uuid())
+  name             String
+  integrationId    String
+  integrationToken String
+  userId           String
+  user             User   @relation(fields: [userId], references: [id])
 }

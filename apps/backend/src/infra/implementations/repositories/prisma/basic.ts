@@ -83,7 +83,7 @@ export class PrismaBasicRepository<TModel, TEntity, TDatabase> extends PrismaSer
 
   async count(filter?: { where?: IWhereFilter<TModel> | undefined }): Promise<number> {
     try {
-      const prismaWhere = filter?.where ? this[`${this.prismaModel}`].buildingWhereFilter(filter.where) : undefined;
+      const prismaWhere = filter?.where ? this.buildingWhereFilter(filter.where) : undefined;
       this.logger.verbose("Database", `Counting records with where: ${JSON.stringify(prismaWhere)}`);
       const count = await this[`${this.prismaModel}`].count({
         where: prismaWhere,
