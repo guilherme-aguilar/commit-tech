@@ -29,5 +29,6 @@
     }
   },
   "ignoreCommand": "bash .scripts/build-vercel.sh",
+  "buildCommand": "pnpm run build",
   "installCommand": "pnpm install"
 }
