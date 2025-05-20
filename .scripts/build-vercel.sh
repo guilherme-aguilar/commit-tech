@@ -2,7 +2,7 @@
 
 echo "VERCEL_GIT_COMMIT_REF: $VERCEL_GIT_COMMIT_REF"
 
-if [[ "$VERCEL_GIT_COMMIT_REF" == "master" || "$VERCEL_GIT_COMMIT_REF" == "homo"  ]] ; then
+if [[ "$VERCEL_GIT_COMMIT_REF" == "master" || "$VERCEL_GIT_COMMIT_REF" == "homo"  || "$VERCEL_GIT_COMMIT_REF" == "devel" ]] ; then
   # Proceed with the build
     echo "✅ - Build can proceed"
   exit 1;

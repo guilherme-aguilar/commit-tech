@@ -24,6 +24,7 @@
     "deploymentEnabled": {
       "master": true,
       "homol": true,
+      "devel": true,
       "*": false
     }
   },
