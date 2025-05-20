@@ -3,8 +3,9 @@ import { BasicModel, ContactInfoModel, AddressModel, BasicEntity} from "@commit-
 export interface UserModel extends BasicModel {
   firstName: string;
   lastName: string;
-  contactInfo: ContactInfoModel;
-  address: AddressModel;
+  email: string;
+  phone?: string[];
+  address?: AddressModel;
   password?: string | null;
   refreshToken?: string | null;
 }
@@ -18,8 +19,8 @@ export class UserEntity extends BasicEntity<model> {
     super(props, id);
   }
 
-  getEmail(): string[] {
-    return this.props.contactInfo.email;
+  getEmail(): string {
+    return this.props.email;
   }
 
   getPassword(): string | null {

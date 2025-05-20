@@ -9,12 +9,20 @@ module.exports = {
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  "collectCoverageFrom": [
-    "**/*.(t|j)s"
-  ],
-  "coverageDirectory": "../coverage",
   "testEnvironment": "node",
   "moduleNameMapper": {
     "^src/(.*)$": "<rootDir>/$1"
-  }
+  },
+  "passWithNoTests": true,
+  "coverageProvider": "v8",
+  "collectCoverage": true,
+  "coverageReporters": ["text", "lcov"],
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    ".*\\.spec\\.ts$"
+  ],
+  "collectCoverageFrom": [
+    "**/*.(t|j)s"
+  ],
+  "coverageDirectory": "../coverage"
 }

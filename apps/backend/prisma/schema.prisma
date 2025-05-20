@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_DIRECT_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  firstName    String
+  lastName     String
+  password     String?
+  refreshToken String?
+  email        String   @unique
+  phones       Phone[]
+  address      Address?
+}
+
+model Phone {
+  id     String @id @default(uuid())
+  phone  String
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@unique([userId, phone]) // Unique constraint on userId and phone
+}
+
+model Address {
+  id           String  @id @default(uuid())
+  street       String
+  number       String
+  complement   String?
+  neighborhood String
+  city         String
+  state        String
+  zipCode      String
+  userId       String? @unique // One-to-one relation with User
+  user         User?   @relation(fields: [userId], references: [id])
+}

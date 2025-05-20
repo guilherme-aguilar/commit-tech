@@ -1,10 +1,10 @@
 import { BasicUseCase, type IUCRequest } from '@commit-tech/system-shared';
+import type { ExceptionAdapter } from '@commit-tech/system-shared/src/domain/adapters/exceptions.adapter';
+import type { LoggerAdapter } from '@commit-tech/system-shared/src/domain/adapters/logger.adapter';
 import { createAccessToken, createRefreshToken } from 'src/app/utils/authentication/tokensFactory';
 import type { BcryptAdapter } from 'src/domain/adapters/bcrypt.adapter';
 import type { ConfigEnvAdapter } from 'src/domain/adapters/configEnv.adapter';
-import type { ExceptionAdapter } from 'src/domain/adapters/exceptions.adapter';
 import type { JwtAdapter } from 'src/domain/adapters/jwt.adapter';
-import type { LoggerAdapter } from 'src/domain/adapters/logger.adapter';
 import type { UserRepository } from 'src/domain/repositories/user.repo';
 
 export interface UsingRefreshTokenUseCaseRequest {
@@ -39,9 +39,15 @@ export class UsingRefreshTokenUseCase extends BasicUseCase<request, any> {
         'Invalid refresh token. Please login again to continue.',
       );
     }
+
+    if (user.getRefreshToken() !== data.refreshToken) {
+      this.exception.UnauthorizedException(
+        'Refresh token has been revoked. Please login again to continue.',
+      );
+    }
+
     const accessToken = createAccessToken(user.id, this.jwt, this.config);
     const refreshToken = createRefreshToken(user.id, this.jwt, this.config);
-
 
     user.updateProperties({
       refreshToken,

@@ -1,6 +1,7 @@
 import { BasicUseCase, type IUCRequest } from '@commit-tech/system-shared';
 import type { ExceptionAdapter } from '@commit-tech/system-shared/src/domain/adapters/exceptions.adapter';
 import type { LoggerAdapter } from '@commit-tech/system-shared/src/domain/adapters/logger.adapter';
+import { Injectable } from '@nestjs/common';
 import { createAccessToken, createRefreshToken } from 'src/app/utils/authentication/tokensFactory';
 import type { BcryptAdapter } from 'src/domain/adapters/bcrypt.adapter';
 import type { ConfigEnvAdapter } from 'src/domain/adapters/configEnv.adapter';
@@ -14,6 +15,7 @@ export interface SigninUseCaseRequest {
 
 type request = SigninUseCaseRequest;
 
+@Injectable()
 export class SigninUseCase extends BasicUseCase<request, any> {
   constructor(
     readonly logger: LoggerAdapter,
@@ -29,7 +31,7 @@ export class SigninUseCase extends BasicUseCase<request, any> {
     const { data } = input;
 
     const user = await this.userRepo.searchOne({
-      "contactInfo.email": data.email,
+    email: data.email,
     })
 
     if (!user) {

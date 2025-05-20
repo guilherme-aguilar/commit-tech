@@ -1,47 +1,16 @@
 
 
 import { IUCRequest } from '@commit-tech/system-shared';
+import { generateBasicRepositoryMock } from 'src/app/utils/tests/generateBasicRepositoryMock';
+import { generateExceptionMock } from 'src/app/utils/tests/generateExceptionMock';
+import { generateLoggerMock } from 'src/app/utils/tests/generateLoggerMock';
 import { SigninUseCase, SigninUseCaseRequest } from './signin';
 
 describe('SigninUseCase - Testes de autenticação de usuário', () => {
   // Mocks dos adaptadores e repositórios
-  const loggerMock = {
-    log: jest.fn(),
-    error: jest.fn(),
-    warn: jest.fn(),
-    debug: jest.fn(),
-    verbose: jest.fn(),
-  };
-  
-  const exceptionMock = {
-    UnauthorizedException: jest.fn().mockImplementation((message) => {
-      throw new Error(`Unauthorized: ${message}`);
-    }),
-    BadRequestException: jest.fn().mockImplementation((message) => {
-      throw new Error(`BadRequest: ${message}`);
-    }),
-    NotFoundException: jest.fn().mockImplementation((message) => {
-      throw new Error(`NotFound: ${message}`);
-    }),
-    ForbiddenException: jest.fn().mockImplementation((message) => {
-      throw new Error(`Forbidden: ${message}`);
-    }),
-    ConflictException: jest.fn().mockImplementation((message) => {
-      throw new Error(`Conflict: ${message}`);
-    }),
-    InternalServerErrorException: jest.fn().mockImplementation((message) => {
-      throw new Error(`InternalServerError: ${message}`);
-    }),
-  };
-  
-  const userRepoMock = {
-    searchOne: jest.fn(),
-    update: jest.fn(),
-    count: jest.fn(),
-    delete: jest.fn(),
-    insert: jest.fn(),
-    searchMany: jest.fn(),
-  };
+  const loggerMock = generateLoggerMock()
+  const exceptionMock = generateExceptionMock();
+  const userRepoMock = generateBasicRepositoryMock()
   
   const bcryptMock = {
     hash: jest.fn(),
