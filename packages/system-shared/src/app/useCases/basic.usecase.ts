@@ -1,5 +1,6 @@
-import type { ExceptionAdapter } from "../domain/adapters/exceptions.adapter";
-import type { LoggerAdapter } from "../domain/adapters/logger.adapter";
+import type { ExceptionAdapter } from "../../domain/adapters/exceptions.adapter";
+import type { LoggerAdapter } from "../../domain/adapters/logger.adapter";
+
 
 
 export interface IUCRequest<T> {

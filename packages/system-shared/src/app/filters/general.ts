@@ -1,54 +1,66 @@
+import type { AddressModel } from "../../domain/entities/address.entity";
 
+// Generic helper types for building the filter
 export type LogicalOperator = 'OR' | 'AND' | 'NOT';
 
-export type Operator =
-  | 'equals'
-  | 'not'
-  | 'gt'
-  | 'gte'
-  | 'lt'
-  | 'lte'
-  | 'in'
-  | 'notIn'
-  | 'contains'
-  | 'startsWith'
-  | 'endsWith'
-  | 'null'
+export type Operator = 
+  | 'equals' 
+  | 'not' 
+  | 'gt' 
+  | 'gte' 
+  | 'lt' 
+  | 'lte' 
+  | 'in' 
+  | 'notIn' 
+  | 'contains' 
+  | 'startsWith' 
+  | 'endsWith' 
+  | 'null' 
   | 'between';
 
 export type Condition = {
   [key in Operator]?: any;
 };
 
-// Tipo auxiliar para obter todos os caminhos possíveis em um objeto, incluindo aninhados
-export type PathsToStringProps<T> = T extends object
-  ? {
-      [K in keyof T & (string | number)]:
-        | K
-        | `${K}.${PathsToStringProps<T[K]>}`;
-    }[keyof T & (string | number)]
-  : never;
+// Utility types to extract non-function properties from a type
+type NonFunctionPropertyNames<T> = {
+  [K in keyof T]: T[K] extends Function ? never : K;
+}[keyof T];
 
-// Tipo auxiliar para obter o tipo de uma propriedade através de um caminho
-export type PropertyType<T, Path extends string> = Path extends keyof T
-  ? T[Path]
-  : Path extends `${infer K}.${infer R}`
-  ? K extends keyof T
-    ? PropertyType<T[K], R>
-    : never
-  : never;
+type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
 
-// Definição de LogicalFilter modificada para suportar objetos aninhados
-export type LogicalFilter<T> = {
-  OR?: MontedFilter<T>[]; 
-  AND?: MontedFilter<T>[];
-  NOT?: MontedFilter<T>;
+// Recursive type for nested condition structures
+export type NestedFilter<T> = {
+  [K in keyof NonFunctionProperties<T>]?: T[K] extends object
+    ? NestedFilter<T[K]> | Condition
+    : Condition;
 };
 
-// Tipo MontedFilter melhorado para suportar propriedades aninhadas
-export type MontedFilter<T> = {
-  [P in PathsToStringProps<T>]?: Condition;
-} & LogicalFilter<T>;
+// Type for filters that can use logical operators
+export interface LogicalFilter<T> {
+  OR?: IWhereFilter<T>[];
+  AND?: IWhereFilter<T>[];
+  NOT?: IWhereFilter<T>;
+}
 
-// Exportação do tipo principal para uso
-export type IWhereFilter<T> = MontedFilter<T>;
+// Main filter type that supports nested objects with proper typing
+export type IWhereFilter<T> = NestedFilter<T> & LogicalFilter<T>;
+
+
+// interface modelExemple {
+//   name: string;
+//   age: number;
+//   address: AddressModel
+// }
+
+// const exempleFilter: IWhereFilter<modelExemple> = {
+//   name: {
+//     equals: 'John',
+//   },
+//   age: {
+//     gt: 30,
+//   },
+//   address: {
+   
+//   },
+// };
