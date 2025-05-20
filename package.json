@@ -4,6 +4,7 @@
   "author": "https://github.com/guilherme-aguilar",
   "license": "ISC",
   "scripts": {
+    "build": "pnpm --filter frontend build && pnpm --filter backend build",
     "backend:dev": "pnpm --filter backend start:dev"
   },
   "pnpm": {
