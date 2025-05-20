@@ -4,8 +4,7 @@ import { Injectable, Logger } from '@nestjs/common';
 export class LoggerService extends Logger {
   debug(context: string, message: string) {
     if (process.env.NODE_ENV !== 'production') {
-      super.debug(`[DEBUG] ${message}`, context);
-    }
+      super.debug(`[DEBUG] ${context}`, message);    }
   }
   log(context: string, message: string) {
     super.log(`[INFO] ${message}`, context);
