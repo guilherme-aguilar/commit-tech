@@ -28,4 +28,6 @@ export abstract class BasicRepository<TModel, TEntity> {
   abstract delete(
     id: string
   ): Promise<void>
+
+  abstract insertMany(data: TEntity[]): Promise<void>
 }
