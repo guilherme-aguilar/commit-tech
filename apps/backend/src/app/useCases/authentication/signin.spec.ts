@@ -86,7 +86,7 @@ describe('SigninUseCase - Testes de autenticação de usuário', () => {
     
     // Assert
     expect(userRepoMock.searchOne).toHaveBeenCalledWith({
-      "contactInfo.email": 'usuario@teste.com'
+      "email": 'usuario@teste.com'
     });
     expect(mockUser.getPassword).toHaveBeenCalled();
     expect(bcryptMock.compare).toHaveBeenCalledWith('senha123', 'hashed-password-123');
