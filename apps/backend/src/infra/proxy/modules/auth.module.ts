@@ -1,4 +1,5 @@
 import { Module } from "@nestjs/common";
+import { GetAuthenticationPayloadUseCase } from "src/app/useCases/authentication/getAuthenticationPayload";
 import { SigninUseCase } from "src/app/useCases/authentication/signin";
 import { UsingRefreshTokenUseCase } from "src/app/useCases/authentication/usingRefreshToken";
 import { PrismaRepositoriesModule } from "src/infra/implementations/repositories/prisma/prisma.module";
@@ -50,7 +51,23 @@ import { LoggerService } from "src/infra/services/logger/logger.service";
         EnvironmentConfigService,
       ],
     },
+
+    //AuthenticationPayload
+    {
+      provide: GetAuthenticationPayloadUseCase,
+      useFactory: (
+        logger: LoggerService,
+        exceptions: ExceptionsService,
+        userRepo: PrismaUserRepository,
+
+      ) => new GetAuthenticationPayloadUseCase(logger, exceptions, userRepo),
+      inject: [
+        LoggerService,
+        ExceptionsService,
+        PrismaUserRepository,
+      ],
+    },
   ],
-  exports: [SigninUseCase, UsingRefreshTokenUseCase], // 👈 ESSENCIAL
+  exports: [SigninUseCase, UsingRefreshTokenUseCase, GetAuthenticationPayloadUseCase], // 👈 ESSENCIAL
 })
 export class AuthUseCaseProxyModule {}

@@ -5,6 +5,7 @@ import { LoggerService } from "../services/logger/logger.service";
 import { NotificationsWhatsappInstanceController } from "./notification/whatsapp/instance.controller";
 import { NotificationsWhatsappUseCaseProxyModule } from "../proxy/modules/notifications/whatsapp.module";
 import { NotificationsWhatsappMessageController } from "./notification/whatsapp/message.controller";
+import { AuthModule } from "../interceptors/auth/auth.module";
 
 
 const controllers = [
@@ -16,6 +17,7 @@ const controllers = [
 
 @Module({
   imports: [
+    AuthModule,
     AuthUseCaseProxyModule,
     NotificationsWhatsappUseCaseProxyModule
   ],

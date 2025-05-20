@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { SigninUseCase } from 'src/app/useCases/authentication/signin';
 import { UsingRefreshTokenUseCase } from 'src/app/useCases/authentication/usingRefreshToken';
+import { IsPublic } from 'src/infra/interceptors/auth/decorators/is-public.decorator';
 
 @Controller('auth')
 export class AuthenticationController {
@@ -10,6 +11,7 @@ export class AuthenticationController {
   ) {}
 
   // exemplo de uso
+  @IsPublic()
   @Post('signin')
   async login(@Body() body: { email: string; password: string }) {
     return this.signinUseCase.execute({
